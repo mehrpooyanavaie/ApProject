@@ -1,0 +1,14 @@
+C:\Users\User\source\repos\ApProject\ApProject\bin\Debug\net7.0\ApProject.exe
+C:\Users\User\source\repos\ApProject\ApProject\bin\Debug\net7.0\ApProject.deps.json
+C:\Users\User\source\repos\ApProject\ApProject\bin\Debug\net7.0\ApProject.runtimeconfig.json
+C:\Users\User\source\repos\ApProject\ApProject\bin\Debug\net7.0\ApProject.dll
+C:\Users\User\source\repos\ApProject\ApProject\bin\Debug\net7.0\ApProject.pdb
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\ApProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\ApProject.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\ApProject.AssemblyInfo.cs
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\ApProject.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\ApProject.dll
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\refint\ApProject.dll
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\ApProject.pdb
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\ApProject.genruntimeconfig.cache
+C:\Users\User\source\repos\ApProject\ApProject\obj\Debug\net7.0\ref\ApProject.dll
