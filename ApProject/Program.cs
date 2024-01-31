@@ -311,126 +311,127 @@ while (mystring != "done")
                     }
                     else
                     {
-
-                        if (allrowscontaincomparecolumns[j][i - 1].StringValue == "")
+                        for (int p = j + 1; p < allrowscount; p++)
                         {
-                            for (int p = j + 1; p < allrowscount; p++)
+                            bool my flag = true;
+                            for (int h = i - 1; h >= 0; h--)
                             {
-                                bool my flag = false;
-                                for (int h = i -1;h>=0;h--)
+                                if (allrowscontaincomparecolumns[j][h].StringValue == "")
                                 {
                                     if (allrowscontaincomparecolumns[j][h].IntValue != allrowscontaincomparecolumns[p][h].IntValue)
                                     {
-                                        flag = true;
+                                        flag = false;
                                         break;
                                     }
                                 }
-                                if(flag)
-                                    o++;
                                 else
-                                    break;
-                            }
-                        }
-                        else
-                            for (int p = j + 1; p < allrowscount; p++)
-                            {
-                                if (allrowscontaincomparecolumns[j][i - 1].StringValue == allrowscontaincomparecolumns[p][i - 1].StringValue)
-                                    o++;
-                                else
-                                    break;
-                            }
-                        if (o != 0)
-                        {
-                            if (allrowscontaincomparecolumns[j][i].StringValue == "")
-                                for (int k = 1; k <= o; k++)
                                 {
-                                    if (allrowscontaincomparecolumns[j][i].IntValue > allrowscontaincomparecolumns[j + k][i].IntValue)
-                                        for (int l = 0; l <= columncountswanttocopare; l++)
-                                        {
-                                            var temp = allrowscontaincomparecolumns[j][l];
-                                            allrowscontaincomparecolumns[j][l] = allrowscontaincomparecolumns[j + k][l];
-                                            allrowscontaincomparecolumns[j + k][l] = temp;
-                                        }
-                                }
-                            else
-                            {
-                                for (int k = 1; k <= o; k++)
-                                {
-                                    if (allrowscontaincomparecolumns[j][i].StringValue.CompareTo(allrowscontaincomparecolumns[j + k][i].StringValue) > 0)
+                                    if (allrowscontaincomparecolumns[j][h].StringValue != allrowscontaincomparecolumns[p][h].StringValue)
                                     {
-                                        for (int l = 0; l <= columncountswanttocopare; l++)
-                                        {
-                                            var temp = allrowscontaincomparecolumns[j][l];
-                                            allrowscontaincomparecolumns[j][l] = allrowscontaincomparecolumns[j + k][l];
-                                            allrowscontaincomparecolumns[j + k][l] = temp;
-                                        }
+                                        flag = false;
+                                        break;
+                                    }
+                                }
+
+                            }
+                            if (flag)
+                                o++;
+                            else
+                                break;
+                        }
+                    }
+                    if (o != 0)
+                    {
+                        if (allrowscontaincomparecolumns[j][i].StringValue == "")
+                            for (int k = 1; k <= o; k++)
+                            {
+                                if (allrowscontaincomparecolumns[j][i].IntValue > allrowscontaincomparecolumns[j + k][i].IntValue)
+                                    for (int l = 0; l <= columncountswanttocopare; l++)
+                                    {
+                                        var temp = allrowscontaincomparecolumns[j][l];
+                                        allrowscontaincomparecolumns[j][l] = allrowscontaincomparecolumns[j + k][l];
+                                        allrowscontaincomparecolumns[j + k][l] = temp;
+                                    }
+                            }
+                        else
+                        {
+                            for (int k = 1; k <= o; k++)
+                            {
+                                if (allrowscontaincomparecolumns[j][i].StringValue.CompareTo(allrowscontaincomparecolumns[j + k][i].StringValue) > 0)
+                                {
+                                    for (int l = 0; l <= columncountswanttocopare; l++)
+                                    {
+                                        var temp = allrowscontaincomparecolumns[j][l];
+                                        allrowscontaincomparecolumns[j][l] = allrowscontaincomparecolumns[j + k][l];
+                                        allrowscontaincomparecolumns[j + k][l] = temp;
                                     }
                                 }
                             }
-
                         }
-                        j += o;
-                        o = 0;
-                    }
-                }
-            }
-            List<int> rowsnumberssorted = new List<int>();
-            foreach (var x in allrowscontaincomparecolumns)
-            {
-                rowsnumberssorted.Add(x[columncountswanttocopare].IntValue);
-                var t = rowsnumberssorted;
-            }
-            foreach (var x in rowsnumberssorted)
-            {
-                foreach (var h in Table.AllTables.SingleOrDefault(c => c.Name == tablename).Columns)
-                {
-                    if (h.Type == "int")
-                        Console.Write(h.AllColumnData.FirstOrDefault(c => c.RowNumber == x).intvalue + " ");
-                    else if (h.Type == "string")
-                        Console.Write(h.AllColumnData.FirstOrDefault(c => c.RowNumber == x).stringvalue + " ");
-                }
-                Console.Write("\n");
-            }
-        }
-    }
-    else if (mystring.Substring(0, searchintable.Length) == searchintable)
-    {
-        var y = mystring.Substring(7);
-        int index = y.IndexOf(" ");
-        var tablename = y.Substring(0, index);
-        var columnwithvaluewithusername = y.Substring(index + 1);
-        index = columnwithvaluewithusername.IndexOf(" ");
-        var columnname = columnwithvaluewithusername.Substring(0, index);
-        var valuewithusername = columnwithvaluewithusername.Substring(index + 1);
-        index = valuewithusername.IndexOf(" ");
-        var value = valuewithusername.Substring(0, index);
-        var mytable = Table.AllTables.SingleOrDefault(x => x.Name == tablename);
-        var mycolumn = mytable.Columns.SingleOrDefault(x => x.Name == columnname);
-        int newvalue;
-        //var k = value;
-        List<ColumnData> columnDatas = new List<ColumnData>();
-        List<int> rowsnumbers = new List<int>();
-        if (mycolumn.Type == "int")
-        {
-            newvalue = Convert.ToInt32(value);
-            columnDatas = mycolumn.AllColumnData.Where(x => x.intvalue == newvalue).ToList();
-        }
-        else if (mycolumn.Type == "string")
-            columnDatas = mycolumn.AllColumnData.Where(x => x.stringvalue == value).ToList();
-        rowsnumbers = columnDatas.Select(x => x.RowNumber).ToList();
-        for (int i = 0; i < rowsnumbers.Count; i++)
-        {
-            for (int j = 0; j < mytable.Columns.Count; j++)
-            {
-                if (mytable.Columns[j].Type == "int")
-                    Console.Write(mytable.Columns[j].AllColumnData[rowsnumbers[i] - 1].intvalue + " ");
-                else if (mytable.Columns[j].Type == "string")
-                    Console.Write(mytable.Columns[j].AllColumnData[rowsnumbers[i] - 1].stringvalue + " ");
 
+                    }
+                    j += o;
+                    o = 0;
+                }
+            }
+        }
+        List<int> rowsnumberssorted = new List<int>();
+        foreach (var x in allrowscontaincomparecolumns)
+        {
+            rowsnumberssorted.Add(x[columncountswanttocopare].IntValue);
+            var t = rowsnumberssorted;
+        }
+        foreach (var x in rowsnumberssorted)
+        {
+            foreach (var h in Table.AllTables.SingleOrDefault(c => c.Name == tablename).Columns)
+            {
+                if (h.Type == "int")
+                    Console.Write(h.AllColumnData.FirstOrDefault(c => c.RowNumber == x).intvalue + " ");
+                else if (h.Type == "string")
+                    Console.Write(h.AllColumnData.FirstOrDefault(c => c.RowNumber == x).stringvalue + " ");
             }
             Console.Write("\n");
         }
     }
-    mystring = Console.ReadLine();
+}
+    else if (mystring.Substring(0, searchintable.Length) == searchintable)
+{
+    var y = mystring.Substring(7);
+    int index = y.IndexOf(" ");
+    var tablename = y.Substring(0, index);
+    var columnwithvaluewithusername = y.Substring(index + 1);
+    index = columnwithvaluewithusername.IndexOf(" ");
+    var columnname = columnwithvaluewithusername.Substring(0, index);
+    var valuewithusername = columnwithvaluewithusername.Substring(index + 1);
+    index = valuewithusername.IndexOf(" ");
+    var value = valuewithusername.Substring(0, index);
+    var mytable = Table.AllTables.SingleOrDefault(x => x.Name == tablename);
+    var mycolumn = mytable.Columns.SingleOrDefault(x => x.Name == columnname);
+    int newvalue;
+    //var k = value;
+    List<ColumnData> columnDatas = new List<ColumnData>();
+    List<int> rowsnumbers = new List<int>();
+    if (mycolumn.Type == "int")
+    {
+        newvalue = Convert.ToInt32(value);
+        columnDatas = mycolumn.AllColumnData.Where(x => x.intvalue == newvalue).ToList();
+    }
+    else if (mycolumn.Type == "string")
+        columnDatas = mycolumn.AllColumnData.Where(x => x.stringvalue == value).ToList();
+    rowsnumbers = columnDatas.Select(x => x.RowNumber).ToList();
+    for (int i = 0; i < rowsnumbers.Count; i++)
+    {
+        for (int j = 0; j < mytable.Columns.Count; j++)
+        {
+            if (mytable.Columns[j].Type == "int")
+                Console.Write(mytable.Columns[j].AllColumnData[rowsnumbers[i] - 1].intvalue + " ");
+            else if (mytable.Columns[j].Type == "string")
+                Console.Write(mytable.Columns[j].AllColumnData[rowsnumbers[i] - 1].stringvalue + " ");
+
+        }
+        Console.Write("\n");
+    }
+}
+mystring = Console.ReadLine();
 }
 Console.ReadKey();
