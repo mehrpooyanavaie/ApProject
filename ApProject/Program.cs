@@ -1,4 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 using ApProject.Models;
 using ApProject;
 
@@ -44,7 +44,7 @@ while (mystring != "done")
                 Console.WriteLine("this user name was exist");
         }
     }
-    if (mystring.Substring(0, createtable.Length) == createtable)
+    else if (mystring.Substring(0, createtable.Length) == createtable)
     {
         var y = mystring.Substring(13);
         if (y.Access())
@@ -57,7 +57,7 @@ while (mystring != "done")
         else
             Console.WriteLine("access denied");
     }
-    if (mystring.Substring(0, deletetable.Length) == deletetable)
+    else if (mystring.Substring(0, deletetable.Length) == deletetable)
     {
         var y = mystring.Substring(13);
         if (y.Access())
@@ -74,7 +74,7 @@ while (mystring != "done")
             Console.WriteLine("access denied");
 
     }
-    if (mystring.Substring(0, addcolumn.Length) == addcolumn)
+    else if (mystring.Substring(0, addcolumn.Length) == addcolumn)
     {
         var y = mystring.Substring(11);
         if (y.Access())
@@ -111,7 +111,7 @@ while (mystring != "done")
         else
             Console.WriteLine("access denied");
     }
-    if (mystring.Substring(0, removecolumn.Length) == removecolumn)
+    else if (mystring.Substring(0, removecolumn.Length) == removecolumn)
     {
         //without cascade
         var y = mystring.Substring(14);
@@ -130,7 +130,7 @@ while (mystring != "done")
         else
             Console.WriteLine("access denied");
     }
-    if (mystring.Substring(0, addrow.Length) == addrow)
+    else if (mystring.Substring(0, addrow.Length) == addrow)
     {
         var y = mystring.Substring(8);
         if (y.Access())
@@ -154,7 +154,7 @@ while (mystring != "done")
         else
             Console.WriteLine("access denied");
     }
-    if (mystring.Substring(0, removerow.Length) == removerow)
+    else if (mystring.Substring(0, removerow.Length) == removerow)
     {
         var y = mystring.Substring(11);
         if (y.Access())
@@ -178,7 +178,7 @@ while (mystring != "done")
         else
             Console.WriteLine("access denied");
     }
-    if (mystring.Substring(0, changerow.Length) == changerow)
+    else if (mystring.Substring(0, changerow.Length) == changerow)
     {
         var y = mystring.Substring(7);
         if (y.Access())
@@ -212,7 +212,7 @@ while (mystring != "done")
         else
             Console.WriteLine("access denied");
     }
-    if (mystring.Substring(0, printtable.Length) == printtable)
+    else if (mystring.Substring(0, printtable.Length) == printtable)
     {
         var y = mystring.Substring(6);
         int index = y.IndexOf(' ');
@@ -311,11 +311,21 @@ while (mystring != "done")
                     }
                     else
                     {
+
                         if (allrowscontaincomparecolumns[j][i - 1].StringValue == "")
                         {
                             for (int p = j + 1; p < allrowscount; p++)
                             {
-                                if (allrowscontaincomparecolumns[j][i - 1].IntValue == allrowscontaincomparecolumns[p][i - 1].IntValue)
+                                bool my flag = false;
+                                for (int h = i -1;h>=0;h--)
+                                {
+                                    if (allrowscontaincomparecolumns[j][h].IntValue != allrowscontaincomparecolumns[p][h].IntValue)
+                                    {
+                                        flag = true;
+                                        break;
+                                    }
+                                }
+                                if(flag)
                                     o++;
                                 else
                                     break;
@@ -383,7 +393,7 @@ while (mystring != "done")
             }
         }
     }
-    if (mystring.Substring(0, searchintable.Length) == searchintable)
+    else if (mystring.Substring(0, searchintable.Length) == searchintable)
     {
         var y = mystring.Substring(7);
         int index = y.IndexOf(" ");
